@@ -5,6 +5,7 @@ import { TaskDocument } from "@/models/task";
 
 const getAllTasks = async (): Promise<TaskDocument[]> => {
   const response = await fetch(`${process.env.API_URL}/tasks`, {
+    cache: 'no-cache'
   })
 
   if (response.status !== 200) {
@@ -13,7 +14,7 @@ const getAllTasks = async (): Promise<TaskDocument[]> => {
 
   const data = await response.json();
   return data.tasks as TaskDocument[];
-}
+};
 
 export default async function MainPage() {
   const allTasks = await getAllTasks();
