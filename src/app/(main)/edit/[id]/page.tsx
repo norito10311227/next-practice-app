@@ -1,11 +1,21 @@
 import EditTaskForm from "@/components/EditTaskForm/EditTaskForm";
+import { TaskDocument } from "@/models/task";
 
 interface Params {
   params: { id: string };
 }
 
-const EditTaskPage = ({ params }: Params) => {
+const getTask = async (id: string): Promise<TaskDocument> => {
+  const response = await fetch(`${process.env.API_URL}/tasks/${id}`, {
+    cache: 'no-store',
+  });
+  const data = await response.json();
+  return data.task as TaskDocument;
+}
+
+const EditTaskPage = async ({ params }: Params) => {
   const id = params.id;
+  const task = await getTask(id);
 
   return (
     <div className="flex flex-col justify-center py-20">
