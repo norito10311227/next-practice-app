@@ -5,6 +5,7 @@ export interface Task {
     description: string;
     dueDate: string;
     isCompleted: boolean;
+    priority: "高"|"中"|"低"
 }
 
 export interface TaskDocument extends Task, Document {
@@ -27,6 +28,10 @@ const taskSchema = new mongoose.Schema<TaskDocument>({
     isCompleted: {
         type: Boolean,
         default: false,
+    },
+    priority: {
+        type: String,
+        enum: ["高", "中", "低"]
     }
 },{ timestamps: true });
 

@@ -5,6 +5,7 @@ import { TaskDocument } from "@/models/task";
 import { useState } from "react";
 import { FormState } from "@/actions/task";
 import { useFormState, useFormStatus } from "react-dom";
+import { Task } from "@/models/task";
 
 interface EditTaskFormProps {
   task: TaskDocument;
@@ -15,6 +16,7 @@ const EditTaskForm: React.FC<EditTaskFormProps> = ({ task }) => {
   const [description, setDescription] = useState(task.description);
   const [dueDate, setDueDate] = useState(task.dueDate);
   const [isCompleted, setIsCompleted] = useState(task.isCompleted);
+  const [priority, setPriority] = useState(task.priority)
 
   const updateTaskWithId = updateTask.bind(null, task._id.toString());
   const initialState: FormState = { error: "" };
@@ -85,6 +87,22 @@ const EditTaskForm: React.FC<EditTaskFormProps> = ({ task }) => {
                 shadow-sm ring-1 ring-inset ring-gray-300"
           />
         </div>
+        <div className="mt-6 ">
+          <label htmlFor="dueDate" className="block text-sm">
+            期限
+          </label>
+          <select
+            name="priority"
+            id="priority"
+            className="block mt-2 py-1.5 px-2 w-full rounded-md border-0 shadow-sm"
+            value={priority}
+            onChange={(e) => setPriority(e.target.value as Task['priority'])}
+          >
+            <option value="高">高</option>
+            <option value="中">中</option>
+            <option value="低">低</option>
+          </select>
+        </div>
         <div className="mt-6 flex items-center">
           <input
             type="checkbox"
@@ -99,10 +117,8 @@ const EditTaskForm: React.FC<EditTaskFormProps> = ({ task }) => {
           </label>
         </div>
         <SubmitButton />
-        {state.error !== '' && (
-          <p className="mt-2 text-red-500 text-sm">
-            { state.error }
-          </p>
+        {state.error !== "" && (
+          <p className="mt-2 text-red-500 text-sm">{state.error}</p>
         )}
       </form>
     </div>

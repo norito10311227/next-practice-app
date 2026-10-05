@@ -14,6 +14,7 @@ export const createTask = async (state: FormState, formData: FormData) => {
         description: formData.get('description') as string,
         dueDate: formData.get('dueDate') as string,
         isCompleted: false,
+        priority: formData.get('priority') as "高"|"中"|"低"
     }
 
     try {
@@ -33,6 +34,7 @@ export const updateTask = async (id: string, state: FormState, formData: FormDat
         description: formData.get('description') as string,
         dueDate: formData.get('dueDate') as string,
         isCompleted: Boolean(formData.get('isCompleted')),
+        priority: formData.get('priority') as "高"|"中"|"低"
     }
 
     try {
