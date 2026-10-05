@@ -1,7 +1,7 @@
 "use client";
 
 import { deleteTask } from "@/actions/task";
-import { FaTrash, FaTrashAlt } from "react-icons/fa";
+import { FaTrashAlt } from "react-icons/fa";
 import { FormState } from "@/actions/task";
 import { useFormState, useFormStatus } from "react-dom";
 import { useEffect } from "react";

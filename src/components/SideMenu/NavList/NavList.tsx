@@ -1,4 +1,4 @@
-import { FaRegCheckCircle, FaRegCheckSquare, FaRegClock, FaTasks } from "react-icons/fa";
+import { FaRegCheckSquare, FaRegClock, FaTasks } from "react-icons/fa";
 import NavItem from "./NavItem/NavItem";
 
 interface NavItemType {
