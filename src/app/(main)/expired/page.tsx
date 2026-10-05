@@ -31,3 +31,4 @@ const ExpiredTaskPage = async () => {
 };
 
 export default ExpiredTaskPage;
+export const dynamic = 'force-dynamic';

@@ -33,3 +33,4 @@ const CompletedTaskPage = async () => {
 };
 
 export default CompletedTaskPage;
+export const dynamic = 'force-dynamic';
