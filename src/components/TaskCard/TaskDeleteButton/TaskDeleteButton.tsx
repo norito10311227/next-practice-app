@@ -4,7 +4,6 @@ import { deleteTask } from "@/actions/task";
 import { FaTrashAlt } from "react-icons/fa";
 import { FormState } from "@/actions/task";
 import { useFormState, useFormStatus } from "react-dom";
-import { useEffect } from "react";
 
 interface TaskDeleteButtonProps {
   id: string;
@@ -14,12 +13,6 @@ const TaskDeleteButton: React.FC<TaskDeleteButtonProps> = ({ id }) => {
   const deleteTaskWithId = deleteTask.bind(null, id);
   const initialState: FormState = { error: "" };
   const [state, formAction] = useFormState(deleteTaskWithId, initialState);
-
-  useEffect(() => {
-    if (state && state.error !== "") {
-      alert(state.error);
-    }
-  }, [state]);
 
   const SubmitButton = () => {
     const { pending } = useFormStatus();
@@ -37,6 +30,7 @@ const TaskDeleteButton: React.FC<TaskDeleteButtonProps> = ({ id }) => {
   return (
     <form action={formAction}>
       <SubmitButton />
+      {state.error && <p className="text-red-500 text-sm mt-2">{state.error}</p>}
     </form>
   );
 };
